@@ -11,7 +11,9 @@ fn main() {
     let mut turn = false;
 
     loop {
-        println!("Hello, lets play tic tac toe! Player 1 your turn: pick row and column");
+        let player = if turn { "Player 1" } else { "Player 2" };
+
+        println!("Hello, lets play tic tac toe! {} your turn: pick row and column", player);
 
         let mut row = String::new();
         io::stdin()
@@ -30,11 +32,22 @@ fn main() {
         if turn {
             game_state[row_num][col_num] = 1;
         } else {
-            game_state[row_num][col_num] = 0;
+            game_state[row_num][col_num] = 2;
 
         }
         turn = !turn;
-        println!("Game state {}", game_state[row_num][col_num]);
+
+        let winner = check_winner(&mut game_state);
+        if (winner) {
+            println!("We have a winner");
+            print_state(&mut game_state);
+            break;
+
+        } else {
+            print_state(&mut game_state);
+        }
+
+        // println!("Game state {}", game_state[row_num][col_num]);
     }
 
 
@@ -42,9 +55,34 @@ fn main() {
 
 }
 
-fn won_game() {
+fn check_winner(grid: &mut [[u8; 3]; 3]) -> bool {
+    let grid2 = grid.clone();
+    for (i, row) in grid.iter_mut().enumerate() {
+        // check row
+        if (grid2[i][0] == grid2[i][1] &&  grid2[i][1] == grid2[i][2] && grid2[i][0] != 0) {
+            return true;
+        }
 
+        // check column
+        if (grid2[0][i] == grid2[1][i] &&  grid2[1][i] == grid2[2][i] && grid2[2][i] != 0) {
+            return true;
+        }
+
+        // check diagonals
+    }
+    false
 }
+
+fn print_state(grid: &mut [[u8; 3]; 3]) {
+    let grid2 = grid.clone();
+    for (i, row) in grid.iter_mut().enumerate() {
+        println!("{}|{}|{}", grid2[i][0], grid2[i][1], grid2[i][2]);
+        if (i == 2) {
+            break;
+        }
+    }
+}
+
 
 // fn reset_game_state(&mut game_state) {
 //     game_state = [[0u8; 3]; 3];    

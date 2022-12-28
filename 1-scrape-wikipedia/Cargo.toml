@@ -1,0 +1,14 @@
+[package]
+name = "scrape"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+tl = "0.7.7"
+html5ever = "*"
+html_parser = "*"
+json = "*"

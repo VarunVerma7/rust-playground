@@ -62,7 +62,6 @@ fn check_winner(grid: &mut [[u8; 3]; 3]) -> bool {
         if (grid2[i][0] == grid2[i][1] &&  grid2[i][1] == grid2[i][2] && grid2[i][0] != 0) {
             return true;
         }
-
         // check column
         if (grid2[0][i] == grid2[1][i] &&  grid2[1][i] == grid2[2][i] && grid2[2][i] != 0) {
             return true;
@@ -70,7 +69,22 @@ fn check_winner(grid: &mut [[u8; 3]; 3]) -> bool {
 
         // check diagonals
     }
+    if check_diagonals(grid2) {
+        return true;
+    }
     false
+}
+
+fn check_diagonals(grid:  [[u8; 3]; 3]) -> bool {
+    if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[0][0] != 0) {
+        return true;
+    }
+
+    if (grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0] && grid[0][2] != 0) {
+        return true;
+    }    
+
+    return false;
 }
 
 fn print_state(grid: &mut [[u8; 3]; 3]) {

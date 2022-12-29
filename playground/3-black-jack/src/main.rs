@@ -1,3 +1,10 @@
+#[allow(unused_assignments)]
+
+use rand::prelude::SliceRandom;
+use rand::thread_rng;
+use std::io;
+use std::io::*;
+
 #[derive(Copy, Clone)]
 enum CardType {
     Spades,
@@ -5,6 +12,8 @@ enum CardType {
     Diamonds, 
     Ace
 }
+
+// #[derive(Display)]
 
 struct Card {
     cardType: CardType,
@@ -17,11 +26,41 @@ struct Deck {
 }
 
 fn main() {
-    let deck = instatiate_deck();
-    // assert!(deck.cards.len() == 52);
-    println!("Length of deck {}", deck.cards.len());
+    let number_of_players = 2;
+    let mut deck = instatiate_deck();
+    assert!(deck.cards.len() == 52);
+    let mut sum = 0;
+
+    loop {
+        let card = deal_card(&mut deck);
+        sum += card.cardNumber;
+        println!("You were dealt {} and your sum is {}", card.cardNumber, sum);
+
+        if (sum == 21) {
+            println!("You won!");
+            break;
+        } else if (sum > 21) {
+            println!("You lost");
+            break;
+        } else {
+        }
+
+        println!("Do you want another card? Press 0 to say no");
+        let mut yes = String::new();
+        io::stdin()
+            .read_line(&mut yes)
+            .expect("Failed to read line");
+        if (yes.trim().parse() == Ok(0)) {
+            break;
+        }
+    }
+
 }
 
+
+fn deal_card(deck: &mut Deck) -> Card {
+   deck.cards.pop().unwrap()
+}
 
 fn instatiate_deck() -> Deck {
     let mut all_cards = instantiate_cards_of_card_type(CardType::Spades);
@@ -31,6 +70,10 @@ fn instatiate_deck() -> Deck {
     all_cards.append(&mut aces_cards);
     all_cards.append(&mut hearts_cards);
     all_cards.append(&mut diamonds_cards);
+    
+    // shuffle
+    all_cards.shuffle(&mut thread_rng());
+
 
     Deck {
         cards: all_cards

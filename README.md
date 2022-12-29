@@ -1,6 +1,15 @@
-# rust-playground
-random projects increasing in complexity to learn rust
+# Rust-playground
 
-1 - Scraping Wikipedia
+## Rust Book
 
-2 - Command Line Tic Tac Toe
+- A small program exemplifying the concepts of the chapter
+
+## Playground
+
+Random projects increasing in complexity to learn rust
+
+- 1: Scraping Wikipedia
+
+- 2: Command Line Tic Tac Toe
+
+- 3: BlackJack

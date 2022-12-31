@@ -2,7 +2,7 @@
 
 ## Rust Book
 
-- A small program exemplifying the concepts of the chapter
+- A small program exemplifying the concepts of each chapter
 
 ## Playground
 

@@ -3,20 +3,6 @@ pub mod stack;
 pub mod queue;
 pub mod hashtable;
 
-
-fn main() {
-    let mut stack = stack::Stack  {
-        elements: vec![1, 2, 3, 4, 5, 6]
-    };
-    println!("Stack length {}", stack.stack_length());
-    stack.push(10);
-
-    println!("Stack length {}", stack.stack_length());
-    stack.pop();
-
-    println!("Stack length {}", stack.stack_length());
-}
-
 #[cfg(test)]
 mod datastructure_tests {
     use crate::stack;
@@ -65,4 +51,34 @@ mod datastructure_tests {
         assert_eq!(*retrieved, 670);
 
     }
+}
+struct NewsPaper {
+    articles: String,
+}
+
+impl Summarize for NewsPaper {
+    fn summarize(&self) {
+        println!("{}" , self.articles.clone());
+    }
+}
+trait Summarize {
+    fn summarize(&self);
+}
+fn main() {
+    let mut stack = stack::Stack  {
+        elements: vec![1, 2, 3, 4, 5, 6]
+    };
+    println!("Stack length {}", stack.stack_length());
+    stack.push(10);
+
+    println!("Stack length {}", stack.stack_length());
+    stack.pop();
+
+    println!("Stack length {}", stack.stack_length());
+
+    let newspaper_1 = NewsPaper {
+        articles: String::from("Sup")
+    };
+
+    newspaper_1.summarize();
 }

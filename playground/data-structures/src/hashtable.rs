@@ -23,7 +23,7 @@ impl HashTable {
 }
 
 pub fn create_hash_table() -> HashTable {
-       HashTable {
+    HashTable {
         map: HashMap::new()
-       }
+    }
 }
